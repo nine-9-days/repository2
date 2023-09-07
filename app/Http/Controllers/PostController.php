@@ -8,6 +8,8 @@ use App\Http\Requests\PostRequest;
 
 use App\Models\Post;
 
+use App\Models\Category;
+
 class PostController extends Controller
 {
     public function index(Post $post)
@@ -22,7 +24,7 @@ class PostController extends Controller
     
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with(['categories' => $category->get()]);
     }
 
     public function store(Post $post, PostRequest $request)

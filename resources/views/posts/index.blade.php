@@ -24,7 +24,7 @@
         </form>
             @endforeach
         </div>
-        
+        <a href="">{{ $post->category->name }}</a>
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
