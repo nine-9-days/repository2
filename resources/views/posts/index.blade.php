@@ -12,20 +12,15 @@
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <div>
-                        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                    </div>
-                    <h2 class = 'title'>
-                        <a href="/posts/{{ $post->id }}">{{ $post->title}}</a>
-                    </h2>
+                    <a href="/posts/{{ $post->id }}"><h2 class = 'title'>{{ $post->title}}</h2></a>
                     <p class='body'>{{ $post->body}}</p>
+                    <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deletePost({{ $post->id  }})">delete</button>
+                    </form>
                 </div>
-            <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deletePost({{ $post->id  }})">delete</button>
-            </form>
             @endforeach
         </div>
         <div class='paginate'>
